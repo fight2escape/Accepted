@@ -1,34 +1,30 @@
 #include<iostream>
 using namespace std;
 int main(){
-    int t,i=0;
-    cin>>t;
-    char g = ' ';
-    int w,h;
-    while(t--){
-        cin>>w>>h>>g;
-        //
-        cout<<g;
-        for(int i=1;i<w;i++){
-            cout<<" "<<g;
-        }
-        cout<<endl;
-        if(h>1){
-            if(h>2){
-                for(int j=0;j<h-2;j++){
-                    cout<<g;
-                    for(int i=1;i<w-1;i++){
-                        cout<<" "<<" ";
-                    }
-                    cout<<" "<<g<<endl;
-                }
-            }
-            cout<<g;
-            for(int i=1;i<w;i++){
-                cout<<" "<<g;
-            }
-            cout<<endl;
-        }
-    }
-    return 0;
+	int n;
+	int num[50][100] = {0};
+	int m = 0;
+	int sum[50] = {0};
+	cin>>n;
+	while(n!=0){
+		for(int i=0;i<n;i++){
+			cin>>num[m][i];
+		}
+		sum[m] = 6*num[m][0]+5;
+		for(int j=1;j<n;j++){		
+			if(num[m][j]>num[m][j-1]){
+				sum[m] += 6*(num[m][j]-num[m][j-1])+5;
+			}
+			if(num[m][j]<num[m][j-1]){
+				sum[m] += 4*(num[m][j-1]-num[m][j])+5;
+			}
+		}
+
+		m++;
+		cin>>n;
+	}
+	for(int k=0;k<m;k++){
+		cout<<sum[k]<<endl;
+	}
+	return 0;
 }

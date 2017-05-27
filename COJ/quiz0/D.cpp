@@ -1,26 +1,28 @@
 #include<iostream>
-#include<cmath>
 using namespace std;
 int main(){
-    int t,i=0;
-    cin>>t;
-    int a;
-    bool flag;
-    while(t--){
-       cin>>a;
-       for(int i=a;i>1;i--){
-            flag = true;
-            for(int j=2;j<sqrt(i);j++){
-                if(i%j==0){
-                    flag =false;
-                    break;
-                }
-            }
-            if(flag){
-                cout<<i<<endl;
-                break;
-            }
-       }
-    }
-    return 0;
+	int t,n,i=0;
+	int sta[40]={0};
+	int x[43]={0};
+	x[2] = 1;
+	x[3] = 2;
+	cin>>t;
+	while(t--){
+		cin>>n;
+		if(n<=2){
+			sta[i] = x[2];
+		}else if(n==3){
+			sta[i] = x[3];
+		}else{
+			for(int w=4;w<=n;w++){
+				x[w] = x[w-1]+x[w-2];
+			}
+			sta[i] = x[n];
+		}
+		i++;
+	}
+	for(int j=0;j<i;j++){
+		cout<<sta[j]<<endl;
+	}
+	return 0;
 }

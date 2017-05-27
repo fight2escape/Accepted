@@ -1,30 +1,37 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
+
 int main(){
-   int n;
-   int a[100];
-   int sum;
-   int ave;
-   int temp;
-   while(cin>>n && n){
-        for(int i=0;i<n;i++){
+	int t;
+	cin>>t;
+	int n;
+	int a[1024];
+	int dp[1024];
+	int i,j,k;
+	int ans;
+	while(t--){
+        cin>>n;
+        for(i=0;i<n;i++){
             cin>>a[i];
         }
-        for(int i=n-1;i>0;i--){
-            for(int j=0;j<i;j++){
-                if(a[j]>a[j+1]){
-                    temp = a[j];
-                    a[j] = a[j+1];
-                    a[j+1] = temp;
+        dp[0] = 1;
+        ans = -99999;
+        for(i=1;i<n;i++){
+            dp[i] = 1;
+            for(j=0;j<i;j++){
+                //这里不要严格递增，否则错误，需要>=
+                if(a[i]>=a[j]&&dp[j]+1>dp[i]){
+                    dp[i]=dp[j]+1;
                 }
             }
+            if(ans < dp[i]){
+                ans = dp[i];
+            }
         }
-        if(n%2 != 0){
-            ave = a[(n-1)/2];
-        }else{
-            ave = a[n/2-1];
-        }
-        cout<<ave<<endl;
-   }
-    return 0;
+        cout<<n-ans<<endl;
+	}
+	return 0;
 }
+
+
+

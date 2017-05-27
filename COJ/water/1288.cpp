@@ -7,8 +7,9 @@ int main(){
 	string str;
 	int sz;
 	while(cin>>n>>t && n){
-        cin.ignore();
-        getline(cin,str);
+
+        cin.ignore();//为了忽略掉前面的回车或空格，方便后面读取整行字符串
+        getline(cin,str);//读取带空格的字符串，以回车结束输入
         sz = str.size();
         if(sz==n){
             cout<<str<<endl;

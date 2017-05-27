@@ -1,24 +1,49 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
+
+char* speak(int s){
+    switch(s){
+        case 0: return "ling";break;
+        case 1: return "yi";break;
+        case 2: return "er";break;
+        case 3: return "san";break;
+        case 4: return "si";break;
+        case 5: return "wu";break;
+        case 6: return "liu";break;
+        case 7: return "qi";break;
+        case 8: return "ba";break;
+        case 9: return "jiu";break;
+        default:return "false";
+    }
+}
+
 int main(){
-    int t;
+    int t,i=0;
     cin>>t;
-    int a[20];
-    int temp;
-    for(int i=0;i<2*t;i++){
-        cin>>a[i];
-    }
-    for(int k=2*t-1;k>0;k--){
-       for(int j=0;j<k;j++){
-        if(a[j]>a[j+1]){
-            temp = a[j];
-            a[j] = a[j+1];
-            a[j+1] = temp;
+    int num;
+    while(t--){
+      cin>>num;
+      int g,s,b;
+      b = num/100;
+      s = num%100/10;
+      g = num%10;
+      cout<<speak(b)<<" bai";
+      if(s>0){
+          cout<<" "<<speak(s)<<" shi";
+          if(g>0){
+            cout<<" "<<speak(g)<<endl;
+          }else{
+              cout<<endl;
+          }
+      }else{
+        if(g>0){
+            cout<<" ling "<<speak(g)<<endl;
+        }else{
+            cout<<endl;
         }
-       }
+      }
+
+
     }
-    float mid;
-    mid = ((float)(a[t-1]+a[t]))/2;
-    cout<<mid<<endl;
     return 0;
 }
